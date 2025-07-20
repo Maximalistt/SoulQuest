@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>SoulQuest: Мастерская проектов</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Мастерская проектов</h1>
+      <button id="newProjectBtn" class="btn">+ Создать проект</button>
+    </header>
+    <main>
+      <div id="projectList" class="project-list"></div>
+    </main>
+  </div>
+  <div id="projectModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Новый проект</h2>
+      <input id="projName" placeholder="Название проекта">
+      <input id="projImg" placeholder="URL картинки (опц.)">
+      <label>Дата начала <input id="projStart" type="date"></label>
+      <label>Дата окончания <input id="projEnd" type="date"></label>
+      <div class="modal-actions">
+        <button id="saveProj" class="btn">Создать</button>
+        <button id="closeProj" class="btn secondary">Отмена</button>
+      </div>
+    </div>
+  </div>
+  <div id="tasksModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="backToList" class="btn secondary">← Назад</button>
+      <h2 id="tasksTitle"></h2>
+      <div id="progressContainer"><div id="progressBar"></div></div>
+      <ul id="taskList" class="task-list"></ul>
+      <button id="addTaskBtn" class="btn">+ Добавить задачу</button>
+      <button id="tipsBtn" class="btn info">ℹ️ Советы</button>
+    </div>
+  </div>
+  <div id="tipsModal" class="modal hidden">
+    <div class="modal-content tips">
+      <button id="closeTips" class="btn secondary">✕</button>
+      <div id="tipsCarousel" class="carousel">
+        <div class="slide">Разбей крупный проект на небольшие задачи (5–10 мин) для мотивации.</div>
+        <div class="slide">Выбирай не более трёх важных дел на сегодня — даже одна выполненная задача это победа.</div>
+        <div class="slide">Празднуй успех: после хоть одной задачи закрой день и похвали себя.</div>
+      </div>
+      <div class="carousel-controls">
+        <button id="prevTip" class="btn">◀</button>
+        <button id="nextTip" class="btn">▶</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

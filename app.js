@@ -9,10 +9,10 @@ const soundCheck = document.getElementById('soundCheck');
 const confettiCanvas = document.getElementById('confettiCanvas');
 const ctx = confettiCanvas.getContext('2d');
 
-// Отображение списка проектов
+// Главная (список проектов)
 function renderProjects(){
   projectList.innerHTML = '';
-  projects.forEach((p,i)=>{
+  projects.forEach((p, i)=>{
     const card = document.createElement('div');
     card.className='project-card';
     card.onclick=()=>openProject(i);
@@ -28,7 +28,7 @@ function renderProjects(){
   });
 }
 
-// Открыть модалку
+// Показать/скрыть модальные окна
 function show(el){ el.classList.remove('hidden'); }
 function hide(el){ el.classList.add('hidden'); }
 
@@ -68,7 +68,7 @@ function renderTasks(){
     cb.type='checkbox'; cb.checked = t.done;
     cb.onchange = ()=>{
       t.done = cb.checked; save(); playSound(); renderTasks();
-      if(p.tasks.every(x=>x.done)) fireConfetti();
+      if(p.tasks.length && p.tasks.every(x=>x.done)) fireConfetti();
     };
     li.append(cb, document.createTextNode(t.text));
     list.append(li);
@@ -121,11 +121,13 @@ function openModal(edit=false){
     document.getElementById('projImgUrl').value=p.img||'';
     document.getElementById('projStart').value=p.start||'';
     document.getElementById('projEnd').value=p.end||'';
+    document.getElementById('projImgFile').value = '';
   } else {
     document.getElementById('projName').value='';
     document.getElementById('projImgUrl').value='';
     document.getElementById('projStart').value='';
     document.getElementById('projEnd').value='';
+    document.getElementById('projImgFile').value = '';
   }
   show(projectModal);
 }
@@ -151,7 +153,7 @@ saveBtn.onclick = ()=>{
 function saveProject(name,img){
   const start = document.getElementById('projStart').value;
   const end = document.getElementById('projEnd').value;
-  if(projectModal.querySelector('h2').innerText==='Редактировать проект'){
+  if(document.getElementById('modalTitle').innerText==='Редактировать проект'){
     const p = projects[currentIdx];
     p.name=name; p.img=img; p.start=start; p.end=end;
   } else {

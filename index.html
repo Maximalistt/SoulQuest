@@ -39,11 +39,11 @@
       <button id="addTaskBtn" class="btn primary fullwidth">+ Добавить задачу</button>
     </div>
 
-    <!-- Модальные окна -->
+    <!-- Модальное окно создания/редактирования проекта -->
     <div id="projectModal" class="modal hidden">
       <div class="modal-content">
         <h2 id="modalTitle">Новый проект</h2>
-        <input id="projName" placeholder="Название проекта">
+        <input id="projName" placeholder="Название проекта" required>
         <input id="projImgUrl" placeholder="URL картинки (опц.)">
         <label>Или загрузить файл<input id="projImgFile" type="file" accept="image/*"></label>
         <label>Дата начала<input id="projStart" type="date"></label>
@@ -56,7 +56,9 @@
     </div>
 
     <!-- Звук -->
-    <audio id="soundCheck" src="https://assets.mixkit.co/sfx/preview/mixkit-video-game-coin-2063.mp3"></audio>
+    <audio id="soundCheck">
+      <source src="https://assets.mixkit.co/sfx/preview/mixkit-video-game-coin-2063.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Анимация успеха -->
     <canvas id="confettiCanvas" class="hidden"></canvas>

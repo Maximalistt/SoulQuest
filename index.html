@@ -3,56 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>SoulQuest: Мастерская проектов</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Мастерская проектов</h1>
-      <button id="newProjectBtn" class="btn">+ Создать проект</button>
-    </header>
-    <main>
-      <div id="projectList" class="project-list"></div>
-    </main>
-  </div>
-  <div id="projectModal" class="modal hidden">
-    <div class="modal-content">
-      <h2>Новый проект</h2>
-      <input id="projName" placeholder="Название проекта">
-      <input id="projImg" placeholder="URL картинки (опц.)">
-      <label>Дата начала <input id="projStart" type="date"></label>
-      <label>Дата окончания <input id="projEnd" type="date"></label>
-      <div class="modal-actions">
-        <button id="saveProj" class="btn">Создать</button>
-        <button id="closeProj" class="btn secondary">Отмена</button>
-      </div>
+  <div id="app">
+    <!-- Экран 1: Список проектов -->
+    <div id="projectsScreen" class="screen">
+      <header>
+        <h1>Мастерская проектов</h1>
+        <button id="newProjectBtn" class="btn primary">+ Создать</button>
+      </header>
+      <div id="projectList" class="list"></div>
     </div>
-  </div>
-  <div id="tasksModal" class="modal hidden">
-    <div class="modal-content">
-      <button id="backToList" class="btn secondary">← Назад</button>
-      <h2 id="tasksTitle"></h2>
-      <div id="progressContainer"><div id="progressBar"></div></div>
+
+    <!-- Экран 2: Проект и задачи -->
+    <div id="tasksScreen" class="screen hidden">
+      <header>
+        <button id="backBtn" class="btn secondary">← Назад</button>
+        <h1 id="projTitle">Проект</h1>
+        <button id="editProjBtn" class="btn info">✎ Редактировать</button>
+      </header>
+      <div class="proj-meta">
+        <img id="projImgDisplay" src="" alt="" class="proj-img">
+        <div class="dates">
+          <span id="projDates"></span>
+        </div>
+      </div>
+      <div class="progress-wrapper">
+        <div id="progressBar" class="progress-bar"></div>
+        <span id="progressPct" class="progress-text"></span>
+      </div>
       <ul id="taskList" class="task-list"></ul>
-      <button id="addTaskBtn" class="btn">+ Добавить задачу</button>
-      <button id="tipsBtn" class="btn info">ℹ️ Советы</button>
+      <button id="addTaskBtn" class="btn primary fullwidth">+ Добавить задачу</button>
     </div>
-  </div>
-  <div id="tipsModal" class="modal hidden">
-    <div class="modal-content tips">
-      <button id="closeTips" class="btn secondary">✕</button>
-      <div id="tipsCarousel" class="carousel">
-        <div class="slide">Разбей крупный проект на небольшие задачи (5–10 мин) для мотивации.</div>
-        <div class="slide">Выбирай не более трёх важных дел на сегодня — даже одна выполненная задача это победа.</div>
-        <div class="slide">Празднуй успех: после хоть одной задачи закрой день и похвали себя.</div>
-      </div>
-      <div class="carousel-controls">
-        <button id="prevTip" class="btn">◀</button>
-        <button id="nextTip" class="btn">▶</button>
+
+    <!-- Модальные окна -->
+    <div id="projectModal" class="modal hidden">
+      <div class="modal-content">
+        <h2 id="modalTitle">Новый проект</h2>
+        <input id="projName" placeholder="Название проекта">
+        <input id="projImgUrl" placeholder="URL картинки (опц.)">
+        <label>Или загрузить файл<input id="projImgFile" type="file" accept="image/*"></label>
+        <label>Дата начала<input id="projStart" type="date"></label>
+        <label>Дата окончания<input id="projEnd" type="date"></label>
+        <div class="actions">
+          <button id="saveProjBtn" class="btn primary">Сохранить</button>
+          <button id="cancelProjBtn" class="btn secondary">Отмена</button>
+        </div>
       </div>
     </div>
+
+    <!-- Звук -->
+    <audio id="soundCheck" src="https://assets.mixkit.co/sfx/preview/mixkit-video-game-coin-2063.mp3"></audio>
+
+    <!-- Анимация успеха -->
+    <canvas id="confettiCanvas" class="hidden"></canvas>
   </div>
+
   <script src="app.js"></script>
 </body>
 </html>
